@@ -1,0 +1,7 @@
+name: DeezItems Addon Template
+version: '${project.version}'
+main: your.groupid.deezitemsexampleaddon.DeezItemsAddonTemplate
+api-version: 1.19
+depend: [ DeezItems ]
+authors: [ YourNameHere ]
+description: Example addon template
