@@ -28,7 +28,7 @@ public class ExampleItem extends DeezItem {
                     add("");
                     add("Right click to use");
                 }},
-                false,
+                -1, //-1 means unlimited uses
                 Arrays.asList(
                         new ItemAbility(
                                 "Ability name",
