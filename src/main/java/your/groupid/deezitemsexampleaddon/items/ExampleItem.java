@@ -19,7 +19,7 @@ public class ExampleItem extends DeezItem {
         super(
                 Material.STICK,
                 "Example Item",
-                ItemRarity.COMMON,
+                "Example_Rarity",
                 1,
                 new ArrayList<String>() {{
                     add("");
