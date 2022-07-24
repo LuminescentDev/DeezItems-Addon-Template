@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import xyz.akiradev.deezitems.utils.DeezItem;
 import xyz.akiradev.deezitems.utils.ItemAbility;
-import xyz.akiradev.deezitems.utils.ItemRarity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +43,7 @@ public class ExampleItem extends DeezItem {
 
     @Override
     public boolean leftClickAirAction(Player player, ItemStack itemStack) {
-        // enforce the 30 second cooldown
+        // enforce the 30-second cooldown
         if(ItemAbility.enforceCooldown(player, "cooldown-name", 30, itemStack, true)) return false;
 
         // do something
