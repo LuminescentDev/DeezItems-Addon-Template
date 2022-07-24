@@ -34,9 +34,10 @@ public class ExampleItem extends DeezItem {
                                 "Ability name",
                                 "Ability description",
                                 ItemAbility.AbilityTypes.LEFT_CLICK,
-                                30
+                                30 //cooldown value is optional
                         )
-                )
+                ),
+                -1 //-1 means no custom model
 
         );
     }
