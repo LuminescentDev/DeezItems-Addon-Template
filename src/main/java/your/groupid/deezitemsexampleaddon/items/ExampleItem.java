@@ -1,5 +1,7 @@
 package your.groupid.deezitemsexampleaddon.items;
 
+import dev.luminescent.deezitems.utils.DeezItem;
+import dev.luminescent.deezitems.utils.ItemAbility;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -7,19 +9,20 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import xyz.akiradev.deezitems.utils.DeezItem;
-import xyz.akiradev.deezitems.utils.ItemAbility;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 public class ExampleItem extends DeezItem {
+
+    public static final ItemAbility EXAMPLE_ABILITY = new ItemAbility("example_ability", "Example ability", ItemAbility.AbilityTypes.LEFT_CLICK, 30);
+
     public ExampleItem() {
         super(
+                "example_item",
                 Material.STICK,
                 "Example Item",
                 "Example_Rarity",
-                1,
                 new ArrayList<String>() {{
                     add("");
                     add("This is an example item");
@@ -28,14 +31,7 @@ public class ExampleItem extends DeezItem {
                     add("Right click to use");
                 }},
                 -1, //-1 means unlimited uses
-                Arrays.asList(
-                        new ItemAbility(
-                                "Ability name",
-                                "Ability description",
-                                ItemAbility.AbilityTypes.LEFT_CLICK,
-                                30 //cooldown value is optional
-                        )
-                ),
+                Collections.singletonList(EXAMPLE_ABILITY),
                 -1 //-1 means no custom model
 
         );
@@ -44,7 +40,7 @@ public class ExampleItem extends DeezItem {
     @Override
     public boolean leftClickAirAction(Player player, ItemStack itemStack) {
         // enforce the 30-second cooldown
-        if(ItemAbility.enforceCooldown(player, "cooldown-name", 30, itemStack, true)) return false;
+        if (EXAMPLE_ABILITY.enforceCooldown(player, itemStack, true)) return false;
 
         // do something
         player.sendMessage("You used the ability");
@@ -101,5 +97,10 @@ public class ExampleItem extends DeezItem {
     @Override
     public boolean projectileHitAction(Player player, ProjectileHitEvent projectileHitEvent, ItemStack itemStack) {
         return false;
+    }
+
+    @Override
+    public void registerRecipe() {
+
     }
 }

@@ -1,8 +1,9 @@
 package your.groupid.deezitemsexampleaddon;
 
+import dev.luminescent.deezitems.manager.ItemManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import xyz.akiradev.deezitems.DeezItems;
-import xyz.akiradev.deezitems.utils.ItemRarity;
+import dev.luminescent.deezitems.DeezItems;
+import dev.luminescent.deezitems.utils.ItemRarity;
 import your.groupid.deezitemsexampleaddon.items.ExampleItem;
 
 public final class DeezItemsAddonTemplate extends JavaPlugin {
@@ -20,8 +21,8 @@ public final class DeezItemsAddonTemplate extends JavaPlugin {
     }
 
     public void registerItems(){
-        // Register items here
-        DeezItems.registerItem("example_item", new ExampleItem());
+        ItemManager itemManager = DeezItems.getInstance().getManager(ItemManager.class);
+        itemManager.registerItem(new ExampleItem());
     }
 
     public void registerCustomRaritys(){
