@@ -1,21 +1,23 @@
 package your.groupid.deezitemsexampleaddon.items;
 
+import dev.luminescent.deezitems.DeezItems;
+import dev.luminescent.deezitems.manager.MaterialManager;
 import dev.luminescent.deezitems.utils.DeezItem;
 import dev.luminescent.deezitems.utils.ItemAbility;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class ExampleItem extends DeezItem {
 
-    public static final ItemAbility EXAMPLE_ABILITY = new ItemAbility("example_ability", "Example ability", ItemAbility.AbilityTypes.LEFT_CLICK, 30);
+    public static final ItemAbility EXAMPLE_ABILITY = new ItemAbility("example_ability", "Example ability", "Example Ability Description", ItemAbility.AbilityTypes.LEFT_CLICK, 30);
 
     public ExampleItem() {
         super(
@@ -50,57 +52,15 @@ public class ExampleItem extends DeezItem {
     }
 
     @Override
-    public boolean leftClickBlockAction(Player player, PlayerInteractEvent playerInteractEvent, Block block, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean shiftleftClickAirAction(Player player, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean shiftleftClickBlockAction(Player player, PlayerInteractEvent playerInteractEvent, Block block, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean rightClickAirAction(Player player, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean rightClickBlockAction(Player player, PlayerInteractEvent playerInteractEvent, Block block, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean shiftrightClickAirAction(Player player, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean shiftrightClickBlockAction(Player player, PlayerInteractEvent playerInteractEvent, Block block, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean middleClickAction(Player player, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean breakBlockAction(Player player, BlockBreakEvent blockBreakEvent, Block block, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public boolean projectileHitAction(Player player, ProjectileHitEvent projectileHitEvent, ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
     public void registerRecipe() {
+        NamespacedKey key = new NamespacedKey(DeezItems.getInstance(), getID());
 
+        ShapedRecipe recipe = new ShapedRecipe(key, generate(1));
+
+        recipe.shape(" N ", " N ", " N ");
+
+        recipe.setIngredient('N', new RecipeChoice.ExactChoice(DeezItems.getInstance().getManager(MaterialManager.class).getMaterial("example_material").generate(1)));
+
+        Bukkit.addRecipe(recipe);
     }
 }
